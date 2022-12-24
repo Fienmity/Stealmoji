@@ -1,10 +1,10 @@
 import { getIDByName } from "enmity/api/assets"
 import { FormRow, Image, ScrollView, TouchableOpacity } from "enmity/components"
-import { Navigation, React, Toasts } from "enmity/metro/common"
-import { EmojiModule, GuildStore, PermissionsModule, PermissionsStore } from "../modules"
+import { Constants, Navigation, React, Toasts } from "enmity/metro/common"
+import { EmojiModule, GuildStore, PermissionsStore } from "../modules"
 import GuildIcon from "./GuildIcon"
 
-const Permissions = PermissionsModule.Permissions
+const Permissions = Constants.Permissions
 
 const Add = getIDByName('add_white')
 const Checkmark = getIDByName('Check')

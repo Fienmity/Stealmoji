@@ -8,8 +8,7 @@ export const [
 	EmojiModule,
 	GuildStore,
 	GuildIconModule,
-	PermissionsStore,
-	PermissionsModule
+	PermissionsStore
 ] = bulk(
 	filters.byProps("openLazy", "hideActionSheet"),
 	filters.byProps("ButtonColors", "ButtonLooks", "ButtonSizes"),
@@ -19,5 +18,4 @@ export const [
 	filters.byProps("getGuilds"),
 	filters.byProps("GuildIconSizes"),
 	filters.byProps("can", "_dispatcher"),
-	filters.byProps("Permissions")
 );
