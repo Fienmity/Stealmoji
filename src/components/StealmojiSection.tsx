@@ -1,7 +1,7 @@
 import { FormDivider, View } from "enmity/components";
-import { Navigation, React, StyleSheet, Toasts } from "enmity/metro/common";
+import { Navigation, React, StyleSheet, Toasts, Clipboard } from "enmity/metro/common";
 import { getIDByName } from 'enmity/api/assets';
-import { Clipboard, LazyActionSheet } from "../modules";
+import { LazyActionSheet } from "../modules";
 import Button from "./Button";
 import Text from "./Text";
 import Page from "./Page";
