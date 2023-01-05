@@ -1,14 +1,16 @@
 import { FormDivider, View } from "enmity/components";
 import { Navigation, React, StyleSheet, Toasts } from "enmity/metro/common";
 import { getIDByName } from 'enmity/api/assets';
-import { ClipboardModule, LazyActionSheet } from "../modules";
+import { Clipboard, LazyActionSheet } from "../modules";
 import Button from "./Button";
 import Text from "./Text";
 import Page from "./Page";
 import AddEmojiGuildSelect from "./AddEmojiGuildSelect";
+import fetchImage from "../func/fetchImage";
 
 // Icons
-const Copy = getIDByName('toast_copy_link')
+const CopyLink = getIDByName('toast_copy_message_link')
+const CopyFile = getIDByName('ic_message_copy')
 
 interface EmojiNode {
 	frozenSrc: string
@@ -40,11 +42,20 @@ const styles = StyleSheet.createThemedStyleSheet({
 export default function StealmojiSection({ emojiNode }: StealmojiSectionProps) {
 	const copyEmojiUrlCallback = () => {
 		// Copy emoji URL
-		ClipboardModule.Clipboard.setString(emojiNode.src)
-		Toasts.open({ content: `Copied ${emojiNode.alt}'s URL`, source: Copy })
+		Clipboard.setString(emojiNode.src)
+		Toasts.open({ content: `Copied ${emojiNode.alt}'s URL to clipboard`, source: CopyLink })
 		// Close the actionsheet
 		LazyActionSheet.hideActionSheet()
 	}
+
+	const copyEmojiImageCallback = () =>
+		fetchImage(emojiNode.src, (dataUrl) => {
+			// Copy emoji URL
+			Clipboard.setImage(dataUrl.split(',')[1])
+			Toasts.open({ content: `Copied ${emojiNode.alt}'s image to clipboard`, source: CopyFile })
+			// Close the actionsheet
+			LazyActionSheet.hideActionSheet()
+		})
 
 	const addToServerCallback = () => {
 		// Close actionsheet
@@ -55,7 +66,8 @@ export default function StealmojiSection({ emojiNode }: StealmojiSectionProps) {
 
 	const buttons = [
 		{ text: "Add to Server", callback: addToServerCallback },
-		{ text: "Copy URL", callback: copyEmojiUrlCallback }
+		{ text: "Copy URL to clipboard", callback: copyEmojiUrlCallback },
+		{ text: "Copy image to clipboard", callback: copyEmojiImageCallback }
 	]
 
 	return (
