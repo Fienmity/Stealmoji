@@ -1,7 +1,7 @@
 {
    "name": "stealmoji",
    "description": "Add emojis to your servers quickly and easily",
-   "version": "1.2.1",
+   "version": "1.2.2",
    "license": "MIT",
    "author": "FieryFlames",
    "scripts": {
