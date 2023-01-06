@@ -21,11 +21,6 @@ interface EmojiNode {
 	id: string
 }
 
-interface StealmojiSectionProps {
-	key: string
-	emojiNode: EmojiNode
-}
-
 const styles = StyleSheet.createThemedStyleSheet({
 	divider: {
 		backgroundColor: StyleSheet.ThemeColorMap.BACKGROUND_ACCENT,
@@ -39,7 +34,7 @@ const styles = StyleSheet.createThemedStyleSheet({
 	button: { marginTop: 16 }
 })
 
-export default function StealmojiSection({ emojiNode }: StealmojiSectionProps) {
+export default function StealmojiSection({ emojiNode }) {
 	const copyEmojiUrlCallback = () => {
 		// Copy emoji URL
 		Clipboard.setString(emojiNode.src)

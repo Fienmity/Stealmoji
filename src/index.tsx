@@ -18,19 +18,21 @@ const Stealmoji: Plugin = {
             // if it's MessageEmojiActionSheet then in we go
             component.then((instance) => {
                // Patch default of instance
-               Patcher.after(instance, "default", (_, [{ emojiNode }], res) => {
+               const unpatchInstance = Patcher.after(instance, "default", (_, [{ emojiNode }], res) => {
+                  unpatchInstance()
                   // If emoji isn't custom then don't do anything
                   if (emojiNode.type !== 'customEmoji') return res
 
                   // Patch EmojiInfo (made up name, it contains the info about the emoji)
                   const EmojiInfo = res?.props?.children?.props?.children?.props?.children
-                  Patcher.after(EmojiInfo, "type", (_, [{ emojiNode }], res) => {
-                     // Patch in stealmoji additions if not already added
-                     const last = res.props?.children[res.props.children.length - 1]
-                     if (!last || last.key !== "stealmoji") {
-                        res.props?.children.push(<StealmojiSection key="stealmoji" emojiNode={emojiNode} />)
-                     }
+                  const unpatchEmojiInfo = Patcher.after(EmojiInfo, "type", (_, [{ emojiNode }], res) => {
+                     // Unpatch on unmount
+                     React.useEffect(() => {
+                        return () => unpatchEmojiInfo()
+                     }, [])
 
+                     // Patch in stealmoji additions if not already added
+                     res.props?.children.push(<StealmojiSection emojiNode={emojiNode} />)
                      return res
                   })
                })
