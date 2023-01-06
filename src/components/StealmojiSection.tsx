@@ -21,11 +21,6 @@ interface EmojiNode {
 	id: string
 }
 
-interface StealmojiSectionProps {
-	key: string
-	emojiNode: EmojiNode
-}
-
 const styles = StyleSheet.createThemedStyleSheet({
 	divider: {
 		backgroundColor: StyleSheet.ThemeColorMap.BACKGROUND_ACCENT,
