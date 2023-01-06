@@ -1,6 +1,6 @@
 {
    "name": "Stealmoji",
-   "version": "1.2.2",
+   "version": "1.2.3",
    "description": "Add emojis to your servers quickly and easily",
    "authors": [
       {
@@ -11,7 +11,7 @@
    "updater": {
       "plugin": "https://github.com/FierysDiscordAddons/Stealmoji/releases/latest/download/Stealmoji.js",
       "manifest": "https://github.com/FierysDiscordAddons/Stealmoji/releases/latest/download/manifest.json",
-      "changelog": "Fixed memory leaks",
+      "changelog": "Undo memory leak fixes",
       "source": "https://github.com/FierysDiscordAddons/Stealmoji"
    },
    "color": "#000000"
