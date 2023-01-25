@@ -41,7 +41,7 @@ export default ({
 		);
 	}
 
-	return <NavigationNative.NavigationContainer>
+	return <NavigationNative.NavigationContainer independent={true}>
 		<PageNavigator.Navigator
 			initialRouteName={name}
 			style={styles.container}
